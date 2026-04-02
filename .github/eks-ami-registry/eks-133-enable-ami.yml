@@ -11,3 +11,5 @@ amis:
   jira: https://aitestsoc112233.atlassian.net/browse/KAN-68
 - name: rbrk-eks-1.33-demo-6
   jira: https://aitestsoc112233.atlassian.net/browse/KAN-68
+- name: rbrk-eks-1.33-demo-7
+  jira: https://aitestsoc112233.atlassian.net/browse/KAN-68
