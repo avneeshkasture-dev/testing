@@ -1,0 +1,3 @@
+# EKS 1.33 Disable AMI Registry
+# Entries are appended here after Jira approval
+amis: []
