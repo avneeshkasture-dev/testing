@@ -3,3 +3,5 @@
 amis:
 - name: rbrk-eks-1.33-test-disable
   jira: https://aitestsoc112233.atlassian.net/browse/KAN-64
+- name: rbrk-eks-1.33-v2-disable
+  jira: https://aitestsoc112233.atlassian.net/browse/KAN-67
