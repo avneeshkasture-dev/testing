@@ -1,0 +1,37 @@
+name: EKS - Disable Community AMI
+
+on:
+  workflow_dispatch:
+    inputs:
+      ami_name:
+        description: 'AMI name to disable'
+        required: true
+        type: string
+      jira_key:
+        description: 'Approved Jira ticket key'
+        required: true
+        type: string
+
+jobs:
+  disable-ami:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log disable request
+        run: |
+          echo "=== EKS Disable AMI Request ==="
+          echo "AMI Name : ${{ inputs.ami_name }}"
+          echo "Jira Key : ${{ inputs.jira_key }}"
+          echo ""
+          echo "=== Current Disable Registry ==="
+          cat .github/eks-ami-registry/eks-133-disable-ami.yml
+
+      - name: Verify AMI in registry
+        run: |
+          if grep -q "${{ inputs.ami_name }}" .github/eks-ami-registry/eks-133-disable-ami.yml; then
+            echo "✅ AMI ${{ inputs.ami_name }} found in disable registry. Proceeding."
+          else
+            echo "❌ AMI ${{ inputs.ami_name }} NOT found in disable registry. Aborting."
+            exit 1
+          fi
