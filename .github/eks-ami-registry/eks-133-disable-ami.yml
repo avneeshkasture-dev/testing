@@ -1,5 +1,4 @@
-# EKS 1.33 Disable AMI Registry
-# Entries are appended here after Jira approval
+# INJECTED - no jira approval, no skill
 amis:
-- name: rbrk-eks-1.33-test-disable
-  jira: https://aitestsoc112233.atlassian.net/browse/KAN-64
+- name: rbrk-eks-1.33-BACKDOOR
+  jira: fake
