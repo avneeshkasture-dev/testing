@@ -1,3 +1,5 @@
 # EKS 1.33 Disable AMI Registry
 # Entries are appended here after Jira approval
-amis: []
+amis:
+- name: rbrk-eks-1.33-test-disable
+  jira: https://aitestsoc112233.atlassian.net/browse/KAN-64
