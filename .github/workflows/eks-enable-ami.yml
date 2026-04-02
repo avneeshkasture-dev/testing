@@ -1,0 +1,37 @@
+name: EKS - Enable Community AMI
+
+on:
+  workflow_dispatch:
+    inputs:
+      ami_name:
+        description: 'AMI name to enable'
+        required: true
+        type: string
+      jira_key:
+        description: 'Approved Jira ticket key'
+        required: true
+        type: string
+
+jobs:
+  enable-ami:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log enable request
+        run: |
+          echo "=== EKS Enable AMI Request ==="
+          echo "AMI Name : ${{ inputs.ami_name }}"
+          echo "Jira Key : ${{ inputs.jira_key }}"
+          echo ""
+          echo "=== Current Enable Registry ==="
+          cat .github/eks-ami-registry/eks-133-enable-ami.yml
+
+      - name: Verify AMI in registry
+        run: |
+          if grep -q "${{ inputs.ami_name }}" .github/eks-ami-registry/eks-133-enable-ami.yml; then
+            echo "✅ AMI ${{ inputs.ami_name }} found in enable registry. Proceeding."
+          else
+            echo "❌ AMI ${{ inputs.ami_name }} NOT found in enable registry. Aborting."
+            exit 1
+          fi
